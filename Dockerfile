@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:22-alpine AS client
+FROM --platform=$BUILDPLATFORM node:22-alpine AS client
 WORKDIR /app
 COPY ./client .
 RUN yarn install
@@ -24,4 +24,4 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends libssl3 ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-CMD koji
+CMD ["koji"]
